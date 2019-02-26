@@ -41,23 +41,28 @@ We can check descriptives:
 
 ```{r, eval=TRUE}
 summary(indexes)
+
 ```
 
 And data types:
 
 ```{r, eval=TRUE}
 str(indexes,width=70,strict.width='cut')
+#str is similar to dtypes - tells you the types of the data
+#width=70 tells R that you don't want to see more than 70 characters
 ```
 
 Keep in mind thta the last two ones are categorical. *Presscat* is a categorical representation of the press freedom index:
 
 ```{r, eval=TRUE}
 table(indexes$presscat)
+#table is useful for cateforical variables - shows you the frequency of values
 ```
 
 And *enviromentCat* is a representation of environment performance index:
 ```{r, eval=TRUE}
 table(indexes$environmentCat)
+
 ```
 
 The former is ordinal (the higher the better), while the second is a dichotomous variable (good or bad performance).
@@ -84,6 +89,7 @@ explanans=names(indexes)[c(3:5)]
 
 for (x in explanans){
     p=cor.test(indexes[,x],indexes$environment)
+    #first is the independent variables, second is dependent variables
     
     if(p$p.value<0.05){
         messageYES=paste('environment index is correlated with',x)
@@ -97,6 +103,12 @@ for (x in explanans){
 }
 
 ```
+
+```{r}
+cor(indexes[,c(3:6)])
+```
+
+
 
 The level of correlation is moderate to low. 
 
